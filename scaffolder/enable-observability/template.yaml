@@ -22,13 +22,15 @@ spec:
       input:
         url: ./skeleton
         targetPath: .
-    - id: push-to-repo
-      name: Push override file to backroom repo
-      action: gitlab:repo:push
+    - id: create-merge-request
+      name: Create merge request to enable observability
+      action: publish:gitlab:merge-request
       input:
         repoUrl: "{{ gitlab_host }}?owner=workshop&repo=backroom"
-        branchName: main
-        commitMessage: "Enable observability backroom add-on"
+        branchName: enable-observability
+        title: "Enable Observability"
+        description: "Enable Tempo and OpenTelemetry deployment via backroom add-on"
+        removeSourceBranch: true
   output:
     links:
       - title: Open ArgoCD

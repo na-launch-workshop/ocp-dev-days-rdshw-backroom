@@ -23,13 +23,15 @@ spec:
       input:
         url: ./skeleton
         targetPath: .
-    - id: push-to-repo
-      name: Push override file to backroom repo
-      action: gitlab:repo:push
+    - id: create-merge-request
+      name: Create merge request to enable AI sandbox
+      action: publish:gitlab:merge-request
       input:
         repoUrl: "{{ gitlab_host }}?owner=workshop&repo=backroom"
-        branchName: main
-        commitMessage: "Enable AI sandbox backroom add-on"
+        branchName: enable-ai-sandbox
+        title: "Enable AI Sandbox"
+        description: "Enable Sandboxed Containers and Claude Gateway deployment via backroom add-on"
+        removeSourceBranch: true
   output:
     links:
       - title: Open ArgoCD
