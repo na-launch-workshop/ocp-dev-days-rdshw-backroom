@@ -3,17 +3,18 @@ kind: Template
 metadata:
   name: enable-ai-sandbox
   title: Enable AI Sandbox
-  description: Deploy OpenShift sandboxed containers and Claude Gateway
+  description: Deploy OpenShift sandboxed containers Operator and Claude Gateway
   tags:
     - backroom
+    - ai
 spec:
   type: backroom
   owner: group:default/admins
   parameters:
     - title: Enable AI Sandbox
       description: >-
-        This will deploy the OpenShift Sandboxed Containers operator (Kata)
-        and the Claude Gateway to the cluster. Note: KataConfig takes
+        This will deploy the OpenShift sandboxed containers Operator (Kata)
+        and Claude Gateway to the cluster. Note: KataConfig takes
         several minutes to configure worker nodes.
   steps:
     - id: render-override
@@ -30,7 +31,6 @@ spec:
         branchName: enable-ai-sandbox
         title: "Enable AI Sandbox"
         description: "Enable Sandboxed Containers and Claude Gateway deployment via backroom add-on"
-        commitMessage: "Enable AI sandbox backroom add-on"
         removeSourceBranch: true
     - id: auto-merge
       name: Merge the request

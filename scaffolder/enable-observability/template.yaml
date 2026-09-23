@@ -3,9 +3,10 @@ kind: Template
 metadata:
   name: enable-observability
   title: Enable Observability
-  description: Deploy OpenTelemetry and Tempo
+  description: Deploy OpenTelemetry and Tempo Operators
   tags:
     - backroom
+    - observability
 spec:
   type: backroom
   owner: group:default/admins
@@ -29,7 +30,6 @@ spec:
         branchName: enable-observability
         title: "Enable Observability"
         description: "Enable Tempo and OpenTelemetry deployment via backroom add-on"
-        commitMessage: "Enable observability backroom add-on"
         removeSourceBranch: true
     - id: auto-merge
       name: Merge the request
