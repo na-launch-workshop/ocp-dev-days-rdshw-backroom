@@ -28,3 +28,8 @@ aiSandbox:
   claudeGateway:
     name: claude-gateway
     namespace: claude-sandbox
+
+keda:
+  enabled: false
+  name: keda
+  namespace: openshift-keda

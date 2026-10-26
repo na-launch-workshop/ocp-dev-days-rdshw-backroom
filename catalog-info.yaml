@@ -7,3 +7,4 @@ spec:
   targets:
     - ./scaffolder/enable-observability/template.yaml
     - ./scaffolder/enable-ai-sandbox/template.yaml
+    - ./scaffolder/enable-keda/template.yaml

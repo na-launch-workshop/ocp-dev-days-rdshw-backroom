@@ -1,0 +1,19 @@
+{{- if .Values.keda.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+{{ include "backroom.metadata" (dict "name" .Values.keda.name "namespace" .Values.argocd.namespace "syncWave" "0") }}
+spec:
+  destination:
+    namespace: {{ .Values.keda.namespace }}
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cluster/keda
+    repoURL: {{ .Values.gitops.repoURL }}
+    targetRevision: {{ .Values.gitops.targetRevision }}
+    helm:
+      valuesObject:
+        subscription:
+          source: {{ .Values.catalogSource.source }}
+{{ include "backroom.syncPolicy" . | indent 2 }}
+{{- end }}
