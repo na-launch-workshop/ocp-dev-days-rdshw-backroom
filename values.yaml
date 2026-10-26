@@ -33,3 +33,13 @@ keda:
   enabled: false
   name: keda
   namespace: openshift-keda
+  # KEDA HTTP add-on (https://github.com/kedacore/http-add-on). The Custom Metrics
+  # Autoscaler operator declares the http.keda.sh CRDs but does not deploy the
+  # interceptor, so the upstream chart is installed alongside it.
+  httpAddon:
+    enabled: true
+    name: keda-http-add-on
+    namespace: keda
+    repoURL: https://kedacore.github.io/charts
+    chart: keda-add-ons-http
+    version: 0.16.0

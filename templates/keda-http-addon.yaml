@@ -1,0 +1,21 @@
+{{- if and .Values.keda.enabled .Values.keda.httpAddon.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+{{ include "backroom.metadata" (dict "name" .Values.keda.httpAddon.name "namespace" .Values.argocd.namespace "syncWave" "1") }}
+spec:
+  destination:
+    namespace: {{ .Values.keda.httpAddon.namespace }}
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: {{ .Values.keda.httpAddon.chart }}
+    repoURL: {{ .Values.keda.httpAddon.repoURL }}
+    targetRevision: {{ .Values.keda.httpAddon.version }}
+    helm:
+      valuesObject:
+        # KEDA core comes from the Custom Metrics Autoscaler operator; this
+        # chart ships only the interceptor, scaler and operator for HTTP.
+        crds:
+          install: true
+{{ include "backroom.syncPolicy" . | indent 2 }}
+{{- end }}

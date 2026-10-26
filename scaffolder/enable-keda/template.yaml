@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: enable-keda
   title: Enable Custom Metrics Autoscaler
-  description: This will deploy the Custom Metrics Autoscaler operator to the cluster.
+  description: This will deploy the Custom Metrics Autoscaler operator and the KEDA HTTP add-on to the cluster.
   tags:
     - backroom
     - keda
@@ -14,7 +14,8 @@ spec:
     - title: Enable Custom Metrics Autoscaler
       description: >-
         This will deploy the Custom Metrics Autoscaler operator to the
-        cluster.
+        cluster, along with the KEDA HTTP add-on for scaling HTTP
+        workloads to and from zero.
   steps:
     - id: render-override
       name: Render override file
